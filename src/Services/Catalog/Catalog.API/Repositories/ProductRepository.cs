@@ -1,9 +1,10 @@
 ﻿using Catalog.API.Data;
 using Catalog.API.Entities;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+
 
 namespace Catalog.API.Repositories
 {
@@ -13,7 +14,7 @@ namespace Catalog.API.Repositories
 
         public ProductRepository(ICatalogContext ctx)
         {
-            _context = ctx;
+            _context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
 
         public async Task CreateProduct(Product product)
